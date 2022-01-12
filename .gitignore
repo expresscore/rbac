@@ -1,0 +1,10 @@
+/composer.phar
+/composer
+/composer.lock
+/vendor/
+
+/nbproject/
+/.idea/
+/tests/.phpunit.result.cache
+/tests/.phpunit.cache
+/todo.txt

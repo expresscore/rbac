@@ -1,0 +1,34 @@
+{
+	"name": "expresscore/rbac",
+	"license": "MIT",
+	"description": "",
+	"keywords": ["library", "authorization", "authentication", "rbac"],
+	"homepage": "https://devsprint.pl",
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/expresscore/session.git"
+		}
+	],
+	"authors": [
+		{
+			"name": "Marcin Stodulski",
+			"homepage": "https://devsprint.pl",
+			"role": "Developer"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"expresscore\\rbac\\": "src",
+			"test\\helpers\\": "tests/helpers"
+		},
+		"exclude-from-classmap": [
+			"/test/"
+		]
+	},
+	"require": {
+		"php": ">=8.1",
+		"expresscore/session": "1.0.*",
+		"phpunit/phpunit": "9.5.*"
+	}
+}
