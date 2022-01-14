@@ -15,12 +15,12 @@ use expresscore\rbac\interfaces\RoleInterface;
 
 class Role implements RoleInterface
 {
-    private string $code = '';
-    private ?self $parent = null;
-    private string $name = '';
+    protected string $code = '';
+    protected ?self $parent = null;
+    protected string $name = '';
     /** @var $permissions PermissionInterface[] */
-    private array $permissions = [];
-    private bool $hasAllPermissions = false;
+    protected mixed $permissions = [];
+    protected bool $hasAllPermissions = false;
 
     public function getCode(): string
     {
@@ -52,12 +52,12 @@ class Role implements RoleInterface
         $this->parent = $parent;
     }
 
-    public function getPermissions(): array
+    public function getPermissions(): mixed
     {
         return $this->permissions;
     }
 
-    public function setPermissions(array $permissions): void
+    public function setPermissions(mixed $permissions): void
     {
         $this->permissions = $permissions;
     }
