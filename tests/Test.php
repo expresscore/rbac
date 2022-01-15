@@ -125,8 +125,8 @@ class Test extends TestCase
         $authenticator->hardLoginIfNotLogged(MockUserProvider::testValidUserWith2FA);
         $this->assertEquals(LoginStatus::Logged, $authenticator->checkUserLoginStatus());
 
-        $loggedUser = Authenticator::getLoggedUser();
-        $this->assertEquals(MockUserProvider::testValidUserWith2FA, $loggedUser->getLogin());
+        $loggedUserLogin = Authenticator::getLoggedUserLogin();
+        $this->assertEquals(MockUserProvider::testValidUserWith2FA, $loggedUserLogin);
 
     }
 

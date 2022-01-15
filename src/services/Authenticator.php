@@ -25,7 +25,6 @@ class Authenticator
     const _AUTHORIZATION_DATA_PATH = 0;
     const _LOGGED_USER_LOGIN_PATH = 1;
     const _PASSWORD_HASH_PATH = 2;
-    const _USER = 3;
     const _TOKEN_PATH = 4;
     const _TOKEN_EXPIRATION_DATE_PATH = 5;
     const _TOKEN_LOGIN = 6;
@@ -34,7 +33,7 @@ class Authenticator
     private ?UserProviderInterface $userProvider;
     private ?TokenSenderInterface $tokenSender;
     private ?AuthenticationResultHandlerInterface $authenticationResultHandler;
-    private ?string $salt = null;
+    private ?string $salt;
 
     public static function getSessionDataPaths(): array
     {
@@ -183,10 +182,9 @@ class Authenticator
         }
     }
 
-    public static function getLoggedUser(): ?UserInterface
+    public static function getLoggedUserLogin(): ?string
     {
-        /** @noinspection */
-        return Session::getValueFromSession(self::_USER, self::getSessionDataPaths());
+        return Session::getValueFromSession(self::_LOGGED_USER_LOGIN_PATH, self::getSessionDataPaths());
     }
 
     public function hardLoginIfNotLogged($login): bool
@@ -209,7 +207,6 @@ class Authenticator
         }
         Session::saveValueToSession(self::_LOGGED_USER_LOGIN_PATH, $user->getLogin(), self::getSessionDataPaths());
         Session::saveValueToSession(self::_PASSWORD_HASH_PATH, md5($user->getPassword()), self::getSessionDataPaths());
-        Session::saveValueToSession(self::_USER, $user, self::getSessionDataPaths());
 
         if ($rememberMe) {
             setcookie('loggedIn', md5($user->getPassword() . $user->getLogin()), time() + (7 * 24 * 3600), '/');
